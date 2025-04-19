@@ -2,8 +2,11 @@ import React from 'react'
 import Task from '../components/Task'
 import Sidebar from '../components/Sidebar'
 import Topbar from '../components/Topbar'
+import useFetchTasks from '../../../backend/hooks/useFetchTasks'
 
 const Layout = () => {
+  const { tasks } = useFetchTasks()
+
   return (
     <>
       <div className='container-fluid bg-black'>
@@ -19,24 +22,18 @@ const Layout = () => {
                 </div>
               </div>
               <div className='row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 g-4 align-items-baseline'>
-                <div className='col'>
-                  <Task
-                    title="Buy groceries"
-                    content="Milk, Eggs, Bread, Coffee"
-                    date="2025-04-13"
-                    completed={false}
-                    important={true}
-                  />
-                </div>
-                <div className='col'>
-                  <Task
-                    title="Finish project report"
-                    content="Finalize the last section and prepare slides"
-                    date="2025-04-15"
-                    completed={true}
-                    important={false}
-                  />
-                </div>
+                {tasks.map(task => (
+                  <div className='col' key={task._id}>
+                    <Task
+                      title={task.title}
+                      content={task.content}
+                      date={task.date}
+                      completed={task.completed}
+                      important={task.important}
+                    />
+                  </div>
+                ))}
+                {/*
                 <div className='col'>
                   <Task
                     title="Book dentist appointment"
@@ -63,7 +60,7 @@ const Layout = () => {
                     completed={false}
                     important={true}
                   />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
