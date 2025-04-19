@@ -2,7 +2,7 @@ import React from 'react'
 import Task from '../components/Task'
 import Sidebar from '../components/Sidebar'
 import Topbar from '../components/Topbar'
-import useFetchTasks from '../../../backend/hooks/useFetchTasks'
+import useFetchTasks from '../../hooks/useFetchTasks'
 
 const Layout = () => {
   const { tasks } = useFetchTasks()
