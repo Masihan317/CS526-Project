@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { IoIosAddCircleOutline } from "react-icons/io";
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
 const Topbar = () => {
@@ -16,9 +17,26 @@ const Topbar = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Add Task</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="title">
+              <Form.Label>Title</Form.Label>
+              <Form.Control type="email" placeholder="Enter Task Title..." />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="content">
+              <Form.Label>Content</Form.Label>
+              <Form.Control as="textarea" rows={3} placeholder="Enter Task Details..."/>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="date">
+              <Form.Label>Deadline</Form.Label>
+              <Form.Control type="date"/>
+            </Form.Group>
+            <Form.Check type="checkbox" label="important" className="mb-3"></Form.Check>
+            <Form.Check type="checkbox" label="completed"></Form.Check>
+          </Form>
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
