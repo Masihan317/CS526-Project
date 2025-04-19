@@ -25,11 +25,13 @@ const Layout = () => {
                 {tasks.map(task => (
                   <div className='col' key={task._id}>
                     <Task
+                      id={task._id}
                       title={task.title}
                       content={task.content}
                       date={task.date}
                       completed={task.completed}
                       important={task.important}
+                      onDelete={fetchTasks}
                     />
                   </div>
                 ))}
