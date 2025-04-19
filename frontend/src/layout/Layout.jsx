@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Task from '../components/Task'
 import Sidebar from '../components/Sidebar'
 import Topbar from '../components/Topbar'
 import useFetchTasks from '../hooks/useFetchTasks'
 
 const Layout = () => {
-  const { tasks } = useFetchTasks()
+  const { tasks, fetchTasks } = useFetchTasks()
 
   return (
     <>
@@ -18,7 +18,7 @@ const Layout = () => {
             <div className='container-fluid'>
               <div className='row'>
                 <div className='col mt-4 mb-3'>
-                  <Topbar />
+                  <Topbar onCreate={fetchTasks}/>
                 </div>
               </div>
               <div className='row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 g-4 align-items-baseline'>
@@ -34,15 +34,6 @@ const Layout = () => {
                   </div>
                 ))}
                 {/*
-                <div className='col'>
-                  <Task
-                    title="Book dentist appointment"
-                    content="Schedule a cleaning for next week"
-                    date="2025-04-20"
-                    completed={false}
-                    important={false}
-                  />
-                </div>
                 <div className='col'>
                   <Task
                     title="Call mom"

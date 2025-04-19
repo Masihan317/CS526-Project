@@ -3,12 +3,28 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import createTask from '../utils/createTask'
 
-const Topbar = () => {
+const Topbar = ({ onCreate }) => {
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
+  const [date, setDate] = useState('')
+  const [important, setImportant] = useState(false)
+  const [completed, setCompleted] = useState(false)
+
   const [show, setShow] = useState(false)
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleSubmit = async () => {
+    const taskInfo = { title, content, date, important, completed }
+    console.log(taskInfo)
+
+    await createTask(taskInfo)
+    handleClose()
+    onCreate()
+  }
 
   return (
     <div className='d-flex justify-content-between align-items-center text-white'>
@@ -23,26 +39,26 @@ const Topbar = () => {
           <Form>
             <Form.Group className="mb-3" controlId="title">
               <Form.Label>Title</Form.Label>
-              <Form.Control type="email" placeholder="Enter Task Title..." />
+              <Form.Control type="email" placeholder="Enter Task Title..." onChange={e => setTitle(e.target.value)}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="content">
               <Form.Label>Content</Form.Label>
-              <Form.Control as="textarea" rows={3} placeholder="Enter Task Details..."/>
+              <Form.Control as="textarea" rows={3} placeholder="Enter Task Details..." onChange={e => setContent(e.target.value)}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="date">
               <Form.Label>Deadline</Form.Label>
-              <Form.Control type="date"/>
+              <Form.Control type="date" onChange={e => setDate(e.target.value)}/>
             </Form.Group>
-            <Form.Check type="checkbox" label="important" className="mb-3"></Form.Check>
-            <Form.Check type="checkbox" label="completed"></Form.Check>
+            <Form.Check type="checkbox" label="important" className="mb-3" onChange={e => setImportant(e.target.checked)}></Form.Check>
+            <Form.Check type="checkbox" label="completed" onChange={e => setCompleted(e.target.checked)}></Form.Check>
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
+          <Button variant="primary" onClick={handleSubmit}>
+            Create
           </Button>
         </Modal.Footer>
       </Modal>
