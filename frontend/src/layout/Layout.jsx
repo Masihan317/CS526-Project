@@ -6,13 +6,33 @@ import useFetchTasks from '../hooks/useFetchTasks'
 
 const Layout = () => {
   const { tasks, fetchTasks } = useFetchTasks()
+  const [currentFilter, setCurrentFilter] = useState('all')
+
+  const handleFilterChange = (filter) => {
+    setCurrentFilter(filter)
+  }
+
+  const filteredTasks = tasks.filter(task => {
+    switch (currentFilter) {
+      case 'all':
+        return true
+      case 'important':
+        return task.important
+      case 'completed':
+        return task.completed
+      case 'todo':
+        return !task.completed
+      default:
+        return true
+    }
+  })
 
   return (
     <>
       <div className='container-fluid bg-black'>
         <div className='row'>
           <div className='col-md-3'>
-            <Sidebar />
+            <Sidebar onFilterChange={handleFilterChange} />
           </div>
           <div className='col-md-9'>
             <div className='container-fluid'>
@@ -22,7 +42,7 @@ const Layout = () => {
                 </div>
               </div>
               <div className='row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 g-4 align-items-baseline'>
-                {tasks.map(task => (
+                {filteredTasks.map(task => (
                   <div className='col' key={task._id}>
                     <Task
                       id={task._id}
