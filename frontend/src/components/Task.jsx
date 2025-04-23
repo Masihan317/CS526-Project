@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import deleteTask from '../utils/deleteTask';
+import updateTask from '../utils/updateTask';
 
 const Task = ({ id, title, content, date, completed, important, onDelete }) => {
   const formattedDate = new Date(date).toLocaleDateString()
@@ -20,6 +21,11 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
     onDelete()
   }
 
+  const handleToggleComplete = async () => {
+    await updateTask(id, { completed: !completed })
+    onDelete() // This will refresh the task list
+  }
+
   return (
     <>
       <Card className="bg-dark text-white" style={{ height: '20rem' }}>
@@ -30,7 +36,7 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
           <div className="mt-auto">
             <Card.Text className="text-muted mb-2">{formattedDate}</Card.Text>
             <div className="d-flex justify-content-between align-items-center">
-              <Button variant={completed ? "success" : "danger"}>
+              <Button variant={completed ? "success" : "danger"} onClick={handleToggleComplete}>
                 {completed ? "Completed" : "Incomplete"}
               </Button>
               <div className="d-flex gap-2">
