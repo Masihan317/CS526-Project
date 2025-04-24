@@ -55,25 +55,6 @@ const Layout = () => {
                     />
                   </div>
                 ))}
-                {/*
-                <div className='col'>
-                  <Task
-                    title="Call mom"
-                    content="Check in and catch up this weekend"
-                    date="2025-04-14"
-                    completed={true}
-                    important={true}
-                  />
-                </div>
-                <div className='col'>
-                  <Task
-                    title="Plan trip to Japan"
-                    content="Look into flights and Airbnbs in Tokyo"
-                    date="2025-05-01"
-                    completed={false}
-                    important={true}
-                  />
-                </div> */}
               </div>
             </div>
           </div>
