@@ -10,7 +10,7 @@ dotenv.config()
 connectDB()
 
 const app = express();
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 3000
 
 app.use(express.json())  // middleware to parse JSON
 app.use(express.urlencoded({ extended: true }))  // middleware to parse URL-encoded data (form submissions, etc.)
