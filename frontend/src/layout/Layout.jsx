@@ -41,7 +41,7 @@ const Layout = () => {
                   <Topbar onCreate={fetchTasks}/>
                 </div>
               </div>
-              <div className='row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 g-4 align-items-baseline'>
+              <div className='row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-1 g-4 align-items-baseline'>
                 {filteredTasks.map(task => (
                   <div className='col' key={task._id}>
                     <Task

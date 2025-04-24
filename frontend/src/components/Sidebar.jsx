@@ -6,7 +6,7 @@ import { MdNotificationImportant } from "react-icons/md";
 
 const Sidebar = ({ onFilterChange }) => {
   return (
-    <Nav variant="pills" className="bg-dark h-100 flex-column justify-content-center" defaultActiveKey="all">
+    <Nav id="sidebar" variant="pills" className="bg-dark h-100 flex-column justify-content-center" defaultActiveKey="all">
       <Nav.Item>
         <Nav.Link eventKey="all" className="d-flex align-items-center gap-2" onClick={() => onFilterChange('all')}>
           <FaListOl size="20"/>All Tasks

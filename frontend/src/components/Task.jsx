@@ -99,8 +99,8 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
           <Form onSubmit={handleEditSubmit}>
             <Form.Group className="mb-3" controlId="editTitle">
               <Form.Label>Title</Form.Label>
-              <Form.Control 
-                type="text" 
+              <Form.Control
+                type="text"
                 name="title"
                 value={editForm.title}
                 onChange={handleEditChange}
@@ -109,9 +109,9 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="editContent">
               <Form.Label>Content</Form.Label>
-              <Form.Control 
-                as="textarea" 
-                rows={3} 
+              <Form.Control
+                as="textarea"
+                rows={3}
                 name="content"
                 value={editForm.content}
                 onChange={handleEditChange}
@@ -120,24 +120,24 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="editDate">
               <Form.Label>Deadline</Form.Label>
-              <Form.Control 
-                type="date" 
+              <Form.Control
+                type="date"
                 name="date"
                 value={editForm.date}
                 onChange={handleEditChange}
               />
             </Form.Group>
-            <Form.Check 
-              type="checkbox" 
-              label="Important" 
+            <Form.Check
+              type="checkbox"
+              label="Important"
               name="important"
               checked={editForm.important}
               onChange={handleEditChange}
               className="mb-3"
             />
-            <Form.Check 
-              type="checkbox" 
-              label="Completed" 
+            <Form.Check
+              type="checkbox"
+              label="Completed"
               name="completed"
               checked={editForm.completed}
               onChange={handleEditChange}

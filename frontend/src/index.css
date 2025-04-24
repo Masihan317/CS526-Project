@@ -3,3 +3,10 @@ html, body {
   margin: 0;
   background-color: black !important;
 }
+
+@media screen and (min-width: 768px) {
+  #sidebar {
+    position: fixed;
+    width: 24%;
+  }
+}
