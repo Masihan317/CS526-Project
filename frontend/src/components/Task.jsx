@@ -8,10 +8,12 @@ import { MdDelete } from "react-icons/md";
 import deleteTask from '../utils/deleteTask';
 import updateTask from '../utils/updateTask';
 
+// the basic component for a Task object, presented as a card
+// receive props that are task fields and onDelete function that gets triggered when deleting tasks
 const Task = ({ id, title, content, date, completed, important, onDelete }) => {
-  const formattedDate = new Date(date).toLocaleDateString()
+  const formattedDate = new Date(date).toLocaleDateString()  // only keep date from MongoDB time
 
-  const [deleteShow, setDeleteShow] = useState(false);
+  const [deleteShow, setDeleteShow] = useState(false);  // delete confirmation Modal controls
   const [editShow, setEditShow] = useState(false);
   const [editForm, setEditForm] = useState({
     title,
@@ -21,15 +23,16 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
     completed
   });
 
-  const handleDeleteClose = () => setDeleteShow(false);
-  const handleDeleteShow = () => setDeleteShow(true);
+  const handleDeleteClose = () => setDeleteShow(false);  // close delete confirmation Modal controls
+  const handleDeleteShow = () => setDeleteShow(true);  // open delete confirmation Modal controls
   const handleEditClose = () => setEditShow(false);
   const handleEditShow = () => setEditShow(true);
 
+  // function to be called when
   const handleDelete = async () => {
-    await deleteTask(id)
-    handleDeleteClose()
-    onDelete()
+    await deleteTask(id)  // delete task
+    handleDeleteClose()  // close delete confirmation modal
+    onDelete()  // trigger refresh of tasks
   }
 
   const handleToggleComplete = async () => {
@@ -56,17 +59,25 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
     <>
       <Card className="bg-dark text-white" style={{ height: '20rem' }}>
         <Card.Body className="d-flex flex-column">
+          {/* Task Title */}
           <Card.Title>{title}</Card.Title>
+
+          {/* Task Content/Description */}
           <Card.Text>{content}</Card.Text>
 
           <div className="mt-auto">
+
+            {/* Task Deadline */}
             <Card.Text className="text-muted mb-2">{formattedDate}</Card.Text>
             <div className="d-flex justify-content-between align-items-center">
+              {/* Task Complete/Incomplete Toggle Button */}
               <Button variant={completed ? "success" : "danger"} onClick={handleToggleComplete}>
                 {completed ? "Completed" : "Incomplete"}
               </Button>
               <div className="d-flex gap-2">
+                {/* Task Edit Button */}
                 <FaEdit role='button' size={24} onClick={handleEditShow} />
+                {/* Task Delete Button */}
                 <MdDelete role='button' size={24} onClick={handleDeleteShow} />
               </div>
             </div>
@@ -74,7 +85,7 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
         </Card.Body>
       </Card>
 
-      {/* Delete Modal */}
+      {/* Delete Confirmation Modal */}
       <Modal show={deleteShow} onHide={handleDeleteClose}>
         <Modal.Header closeButton>
           <Modal.Title>Task Deletion Confirmation</Modal.Title>
@@ -157,4 +168,4 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
   )
 }
 
-export default Task
+export default Task  // export component to be used externally

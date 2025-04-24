@@ -1,9 +1,11 @@
+/* forcing background to be black and remove weird gaps */
 html, body {
   height: 100%;
   margin: 0;
   background-color: black !important;
 }
 
+/* making sure the sidebar gets fixed to the left for larger screens */
 @media screen and (min-width: 768px) {
   #sidebar {
     position: fixed;

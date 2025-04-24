@@ -6,6 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5000,
+    // set up proxy so we do not need to type full URL
+    // avoids CORS errors
     proxy: {
       "/api": {
         target: "http://localhost:3000",
