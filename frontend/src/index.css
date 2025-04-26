@@ -1,5 +1,6 @@
 /* forcing background to be black and remove weird gaps */
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   background-color: black !important;

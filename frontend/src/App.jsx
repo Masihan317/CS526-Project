@@ -1,11 +1,11 @@
-import Layout from "./layout/Layout"
+import Layout from "./layout/Layout";
 
 function App() {
   return (
     <>
-      <Layout />  {/* basic layout for page */}
+      <Layout /> {/* basic layout for page */}
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,50 +1,50 @@
-import React, { useState } from 'react'
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card'
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import deleteTask from '../utils/deleteTask';
-import updateTask from '../utils/updateTask';
+import deleteTask from "../utils/deleteTask";
+import updateTask from "../utils/updateTask";
 
 // the basic component for a Task object, presented as a card
 // receive props that are task fields and onDelete function that gets triggered when deleting tasks
 const Task = ({ id, title, content, date, completed, important, onDelete }) => {
-  const formattedDate = new Date(date).toLocaleDateString()  // only keep date from MongoDB time
+  const formattedDate = new Date(date).toLocaleDateString(); // only keep date from MongoDB time
 
-  const [deleteShow, setDeleteShow] = useState(false);  // delete confirmation Modal controls
+  const [deleteShow, setDeleteShow] = useState(false); // delete confirmation Modal controls
   const [editShow, setEditShow] = useState(false);
   const [editForm, setEditForm] = useState({
     title,
     content,
-    date: date.split('T')[0],
+    date: date.split("T")[0],
     important,
-    completed
+    completed,
   });
 
-  const handleDeleteClose = () => setDeleteShow(false);  // close delete confirmation Modal controls
-  const handleDeleteShow = () => setDeleteShow(true);  // open delete confirmation Modal controls
+  const handleDeleteClose = () => setDeleteShow(false); // close delete confirmation Modal controls
+  const handleDeleteShow = () => setDeleteShow(true); // open delete confirmation Modal controls
   const handleEditClose = () => setEditShow(false);
   const handleEditShow = () => setEditShow(true);
 
   // function to be called when
   const handleDelete = async () => {
-    await deleteTask(id)  // delete task
-    handleDeleteClose()  // close delete confirmation modal
-    onDelete()  // trigger refresh of tasks
-  }
+    await deleteTask(id); // delete task
+    handleDeleteClose(); // close delete confirmation modal
+    onDelete(); // trigger refresh of tasks
+  };
 
   const handleToggleComplete = async () => {
-    await updateTask(id, { completed: !completed })
-    onDelete()
-  }
+    await updateTask(id, { completed: !completed });
+    onDelete();
+  };
 
   const handleEditChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setEditForm(prev => ({
+    setEditForm((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
@@ -57,7 +57,7 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
 
   return (
     <>
-      <Card className="bg-dark text-white" style={{ height: '20rem' }}>
+      <Card className="bg-dark text-white" style={{ height: "20rem" }}>
         <Card.Body className="d-flex flex-column">
           {/* Task Title */}
           <Card.Title>{title}</Card.Title>
@@ -66,19 +66,21 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
           <Card.Text>{content}</Card.Text>
 
           <div className="mt-auto">
-
             {/* Task Deadline */}
             <Card.Text className="text-muted mb-2">{formattedDate}</Card.Text>
             <div className="d-flex justify-content-between align-items-center">
               {/* Task Complete/Incomplete Toggle Button */}
-              <Button variant={completed ? "success" : "danger"} onClick={handleToggleComplete}>
+              <Button
+                variant={completed ? "success" : "danger"}
+                onClick={handleToggleComplete}
+              >
                 {completed ? "Completed" : "Incomplete"}
               </Button>
               <div className="d-flex gap-2">
                 {/* Task Edit Button */}
-                <FaEdit role='button' size={24} onClick={handleEditShow} />
+                <FaEdit role="button" size={24} onClick={handleEditShow} />
                 {/* Task Delete Button */}
-                <MdDelete role='button' size={24} onClick={handleDeleteShow} />
+                <MdDelete role="button" size={24} onClick={handleDeleteShow} />
               </div>
             </div>
           </div>
@@ -90,7 +92,10 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
         <Modal.Header closeButton>
           <Modal.Title>Task Deletion Confirmation</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Are you sure you want to delete this task? This action cannot be reversed.</Modal.Body>
+        <Modal.Body>
+          Are you sure you want to delete this task? This action cannot be
+          reversed.
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleDeleteClose}>
             Close
@@ -165,7 +170,7 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
         </Modal.Footer>
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default Task  // export component to be used externally
+export default Task; // export component to be used externally
