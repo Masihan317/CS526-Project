@@ -8,11 +8,12 @@ const useFetchTasks = () => {
   const [tasks, setTasks] = useState([]);
 
   // indicates if data is still being loaded
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   // function to fetch tasks from API
   const fetchTasks = async () => {
     try {
+      setIsLoading(true);  // starts loading
       // send GET request to retrieve all tasks
       const res = await fetch('/api/tasks/retrieve');
       const data = await res.json();  // parsing JSON response

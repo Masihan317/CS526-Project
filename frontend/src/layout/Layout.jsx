@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import Task from '../components/Task'
 import Sidebar from '../components/Sidebar'
+import Spinner from 'react-bootstrap/Spinner';
 import Topbar from '../components/Topbar'
 import useFetchTasks from '../hooks/useFetchTasks'
 
 // basic page layout on a grid
 const Layout = () => {
-  const { tasks, fetchTasks } = useFetchTasks()  // fetch tasks on load and store tasks retrieved
+  const { isLoading, tasks, fetchTasks } = useFetchTasks()  // fetch tasks on load and store tasks retrieved
   const [currentFilter, setCurrentFilter] = useState('all')
 
   const handleFilterChange = (filter) => {
@@ -48,8 +49,8 @@ const Layout = () => {
               </div>
               {/* grid to display task cards */}
               <div className='row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-1 g-4 align-items-baseline'>
-                {/* render Task components with fetched tasks */}
-                {filteredTasks.map(task => (
+                {/* render Task components with fetched tasks, set loading Spinner */}
+                {isLoading ? <Spinner id="main-spinner" animation="border" variant="secondary" className='ms-3' /> : filteredTasks.map(task => (
                   <div className='col' key={task._id}>
                     <Task
                       id={task._id}

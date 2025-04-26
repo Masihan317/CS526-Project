@@ -47,6 +47,7 @@ nodemon server.js
 - **Filter Tasks by Category**: Users can filter the tasks that appear on the home page with a list of filters on the sidebar on the left.
 - **Toggle Task Completeness**: Users can click on the `Complete/Incomplete` button on the page to toggle the completeness state of the task. (A complete task will be marked incomplete, and vice versa).
 - **Responsive View**: The application is responsive and will adjust the UI for a better user experience on mobile and smaller screens. The number of cards shown and the position of the sidebar moves accordingly.
+- **Loading State**: The main page displays a spinner when the page is loading for a better user experience.
 
 ## Tech Stack
 - Frontend: Vite, React, React Bootstrap
@@ -60,7 +61,7 @@ The site is deployed on Vercel. Here's a link for you to test out.
 ## Team Members
 - Sihan Ma (@Masihan317)
 
-  Handled Vite setup and Built the main UI (responsive) with React Bootstrap. Developed the Express Server, Implemented REST API endpoints and Integrated MongoDB. Implemented add task, list all tasks, and delete tasks functionality. Wrote Documentation. Updated Favicon.
+  Handled Vite setup and Built the main UI (responsive) with React Bootstrap. Developed the Express Server, Implemented REST API endpoints and Integrated MongoDB. Implemented add task, list all tasks, and delete tasks functionality. Wrote Documentation. Updated favicon. Handled loading state of main page.
 
 - Yuexuan Lu (@noiorhyun)
 
