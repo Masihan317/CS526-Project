@@ -15,6 +15,7 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
 
   const [deleteShow, setDeleteShow] = useState(false); // delete confirmation Modal controls
   const [editShow, setEditShow] = useState(false);
+  const [viewShow, setViewShow] = useState(false); // view details Modal controls
   const [editForm, setEditForm] = useState({
     title,
     content,
@@ -27,6 +28,8 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
   const handleDeleteShow = () => setDeleteShow(true); // open delete confirmation Modal controls
   const handleEditClose = () => setEditShow(false);
   const handleEditShow = () => setEditShow(true);
+  const handleViewClose = () => setViewShow(false);
+  const handleViewShow = () => setViewShow(true);
 
   // function to be called when
   const handleDelete = async () => {
@@ -55,9 +58,20 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
     onDelete();
   };
 
+  // Prevent event propagation when clicking buttons inside the card
+  const handleButtonClick = (e, handler) => {
+    e.stopPropagation();
+    handler();
+  };
+
   return (
     <>
-      <Card className="bg-dark text-white" style={{ height: "20rem" }}>
+      {/* Task Card - Entire card is clickable */}
+      <Card 
+        className="bg-dark text-white" 
+        style={{ height: "20rem", cursor: "pointer" }}
+        onClick={handleViewShow}
+      >
         <Card.Body className="d-flex flex-column">
           {/* Task Title */}
           <Card.Title>{title}</Card.Title>
@@ -70,17 +84,25 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
             <Card.Text className="text-muted mb-2">{formattedDate}</Card.Text>
             <div className="d-flex justify-content-between align-items-center">
               {/* Task Complete/Incomplete Toggle Button */}
-              <Button
+              <Button 
                 variant={completed ? "success" : "danger"}
-                onClick={handleToggleComplete}
+                onClick={(e) => handleButtonClick(e, handleToggleComplete)}
               >
                 {completed ? "Completed" : "Incomplete"}
               </Button>
               <div className="d-flex gap-2">
                 {/* Task Edit Button */}
-                <FaEdit role="button" size={24} onClick={handleEditShow} />
+                <FaEdit 
+                  role="button" 
+                  size={24} 
+                  onClick={(e) => handleButtonClick(e, handleEditShow)} 
+                />
                 {/* Task Delete Button */}
-                <MdDelete role="button" size={24} onClick={handleDeleteShow} />
+                <MdDelete 
+                  role="button" 
+                  size={24} 
+                  onClick={(e) => handleButtonClick(e, handleDeleteShow)} 
+                />
               </div>
             </div>
           </div>
@@ -180,6 +202,69 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
             Save Changes
           </Button>
         </Modal.Footer>
+      </Modal>
+
+      {/* View Details Modal */}
+      <Modal show={viewShow} onHide={handleViewClose} centered>
+        <Modal.Body>
+          {/* Form for viewing task details */}
+          <Form>
+            {/* Title field */}
+            <Form.Group className="mb-3" controlId="viewTitle">
+              <Form.Label>Title</Form.Label>
+              <Form.Control 
+                type="text" 
+                value={title}
+                readOnly
+                plaintext
+              />
+            </Form.Group>
+
+            {/* Content/Description field */}
+            <Form.Group className="mb-3" controlId="viewContent">
+              <Form.Label>Content</Form.Label>
+              <Form.Control 
+                as="textarea" 
+                rows={3} 
+                value={content}
+                readOnly
+                plaintext
+              />
+            </Form.Group>
+
+            {/* Deadline field */}
+            <Form.Group className="mb-3" controlId="viewDate">
+              <Form.Label>Deadline</Form.Label>
+              <Form.Control 
+                type="text" 
+                value={formattedDate}
+                readOnly
+                plaintext
+              />
+            </Form.Group>
+
+            {/* Important status */}
+            <Form.Group className="mb-3" controlId="viewImportant">
+              <Form.Label>Status</Form.Label>
+              <div>
+                <Form.Check 
+                  type="checkbox" 
+                  label="Important" 
+                  checked={important}
+                  readOnly
+                  disabled
+                />
+                <Form.Check 
+                  type="checkbox" 
+                  label="Completed" 
+                  checked={completed}
+                  readOnly
+                  disabled
+                />
+              </div>
+            </Form.Group>
+          </Form>
+        </Modal.Body>
       </Modal>
     </>
   );
