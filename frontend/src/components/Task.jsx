@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
@@ -12,6 +12,8 @@ import updateTask from "../utils/updateTask";
 // receive props that are task fields and onDelete function that gets triggered when deleting tasks
 const Task = ({ id, title, content, date, completed, important, onDelete }) => {
   const formattedDate = new Date(date).toLocaleDateString(); // only keep date from MongoDB time
+  const contentRef = useRef(null);
+  const [isContentTruncated, setIsContentTruncated] = useState(false);
 
   const [deleteShow, setDeleteShow] = useState(false); // delete confirmation Modal controls
   const [editShow, setEditShow] = useState(false);
@@ -23,6 +25,17 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
     important,
     completed,
   });
+
+  // Check if content is truncated
+  useEffect(() => {
+    if (contentRef.current) {
+      const element = contentRef.current;
+      setIsContentTruncated(
+        element.scrollHeight > element.clientHeight ||
+        element.scrollWidth > element.clientWidth
+      );
+    }
+  }, [content]);
 
   const handleDeleteClose = () => setDeleteShow(false); // close delete confirmation Modal controls
   const handleDeleteShow = () => setDeleteShow(true); // open delete confirmation Modal controls
@@ -74,10 +87,33 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
       >
         <Card.Body className="d-flex flex-column">
           {/* Task Title */}
-          <Card.Title>{title}</Card.Title>
+          <Card.Title className="text-truncate">{title}</Card.Title>
 
           {/* Task Content/Description */}
-          <Card.Text>{content}</Card.Text>
+          <div className="position-relative flex-grow-1">
+            <Card.Text 
+              ref={contentRef}
+              className="overflow-hidden mb-0" 
+              style={{ 
+                display: '-webkit-box',
+                WebkitLineClamp: 4,
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                lineHeight: '1.5'
+              }}
+            >
+              {content}
+            </Card.Text>
+            {isContentTruncated && (
+              <div 
+                className="text-muted d-inline"
+                style={{ fontSize: '0.9rem' }}
+              >
+                ... View details
+              </div>
+            )}
+          </div>
 
           <div className="mt-auto">
             {/* Task Deadline */}
