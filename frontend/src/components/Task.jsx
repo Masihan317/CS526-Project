@@ -112,48 +112,58 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
           <Modal.Title>Edit Task</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          {/* Form for editing task details */}
           <Form onSubmit={handleEditSubmit}>
+            {/* Title input field */}
             <Form.Group className="mb-3" controlId="editTitle">
               <Form.Label>Title</Form.Label>
-              <Form.Control
-                type="text"
+              <Form.Control 
+                type="text" 
                 name="title"
                 value={editForm.title}
                 onChange={handleEditChange}
                 placeholder="Enter Task Title..."
               />
             </Form.Group>
+
+            {/* Content/Description textarea */}
             <Form.Group className="mb-3" controlId="editContent">
               <Form.Label>Content</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
+              <Form.Control 
+                as="textarea" 
+                rows={3} 
                 name="content"
                 value={editForm.content}
                 onChange={handleEditChange}
                 placeholder="Enter Task Details..."
               />
             </Form.Group>
+
+            {/* Deadline date picker */}
             <Form.Group className="mb-3" controlId="editDate">
               <Form.Label>Deadline</Form.Label>
-              <Form.Control
-                type="date"
+              <Form.Control 
+                type="date" 
                 name="date"
                 value={editForm.date}
                 onChange={handleEditChange}
               />
             </Form.Group>
-            <Form.Check
-              type="checkbox"
-              label="Important"
+
+            {/* Important status toggle */}
+            <Form.Check 
+              type="checkbox" 
+              label="Important" 
               name="important"
               checked={editForm.important}
               onChange={handleEditChange}
               className="mb-3"
             />
-            <Form.Check
-              type="checkbox"
-              label="Completed"
+
+            {/* Completion status toggle */}
+            <Form.Check 
+              type="checkbox" 
+              label="Completed" 
               name="completed"
               checked={editForm.completed}
               onChange={handleEditChange}
@@ -161,9 +171,11 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
+          {/* Close button - discards changes */}
           <Button variant="secondary" onClick={handleEditClose}>
             Close
           </Button>
+          {/* Save button - submits form and updates task */}
           <Button variant="primary" onClick={handleEditSubmit}>
             Save Changes
           </Button>
