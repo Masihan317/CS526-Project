@@ -96,11 +96,12 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
               className="overflow-hidden mb-0" 
               style={{ 
                 display: '-webkit-box',
-                WebkitLineClamp: 4,
+                WebkitLineClamp: 6,
                 WebkitBoxOrient: 'vertical',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
-                lineHeight: '1.5'
+                lineHeight: '1.4',
+                marginBottom: '0.25rem'
               }}
             >
               {content}
