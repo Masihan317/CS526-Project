@@ -81,12 +81,12 @@ router.delete("/delete/:id", async (req, res) => {
 
 app.use("/api/tasks", router); // use the router for all routes under /api/tasks
 
-app.use(express.static(path.join(__dirname, "frontend/dist"))) // serve static files
+app.use(express.static(path.join(__dirname, "/frontend/dist"))) // serve static files
 
 // serve frontend from backend
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
-});
+})
 
 // start the server
 app.listen(PORT, () => {
