@@ -32,10 +32,8 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
     completed,
   });
 
-  /**
-   * Effect hook to check if content is truncated
-   * determine if we need to show the "View details" indicator
-   */
+  
+  //check if content is truncated, determine if we need to show the "View details" indicator
   useEffect(() => {
     if (contentRef.current) {
       const element = contentRef.current;
@@ -48,10 +46,10 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
 
   const handleDeleteClose = () => setDeleteShow(false); // close delete confirmation Modal controls
   const handleDeleteShow = () => setDeleteShow(true); // open delete confirmation Modal controls
-  const handleEditClose = () => setEditShow(false); 
-  const handleEditShow = () => setEditShow(true);
-  const handleViewClose = () => setViewShow(false);
-  const handleViewShow = () => setViewShow(true);
+  const handleEditClose = () => setEditShow(false);  // Close the edit task Modal
+  const handleEditShow = () => setEditShow(true);  // Open the edit task Modal
+  const handleViewClose = () => setViewShow(false);   // Close the view details Modal
+  const handleViewShow = () => setViewShow(true);  // Open the view details Modal
 
   // function to be called when
   const handleDelete = async () => {

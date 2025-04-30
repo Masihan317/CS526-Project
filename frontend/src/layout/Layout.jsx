@@ -5,36 +5,17 @@ import Spinner from "react-bootstrap/Spinner";
 import Topbar from "../components/Topbar";
 import useFetchTasks from "../hooks/useFetchTasks";
 
-/**
- * Layout Component
- * 
- * Main layout component that structures the application's UI and manages task data.
- * Implements a responsive grid layout with sidebar navigation and task display.
- * 
- * Features:
- * - Task fetching and management
- * - Task filtering based on different criteria
- * - Responsive grid layout for task cards
- * - Loading state handling
- */
 const Layout = () => {
   const { isLoading, tasks, fetchTasks } = useFetchTasks(); // fetch tasks on load and store tasks retrieved
   const [currentFilter, setCurrentFilter] = useState("all");
 
-  /**
-   * Handles filter changes from the sidebar
-   * Updates the current filter state which affects task display
-   * 
-   * @param {string} filter - The selected filter type ("all", "important", "completed", "todo")
-   */
+  // Handles filter changes from the sidebar
   const handleFilterChange = (filter) => {
     setCurrentFilter(filter);
   };
 
-  /**
-   * Filters tasks based on the current filter selection
-   * Returns a filtered array of tasks matching the selected criteria
-   */
+  
+  // Filters tasks and Returns a filtered tasks
   const filteredTasks = tasks.filter((task) => {
     switch (currentFilter) {
       case "all":
