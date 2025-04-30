@@ -1,0 +1,32 @@
+{
+  "name": "cs526-project",
+  "version": "1.0.0",
+  "description": "## Project Overview Our final project is a fullstack **Task Management Application** that allows our user to create, retrieve, update, and delete tasks on a home page.",
+  "main": "server.js",
+  "scripts": {
+    "server": "nodemon backend/server.js",
+    "start": "node backend/server.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Masihan317/CS526-Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Masihan317/CS526-Project/issues"
+  },
+  "homepage": "https://github.com/Masihan317/CS526-Project#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.18.2",
+    "mongoose": "^8.14.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

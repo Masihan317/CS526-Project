@@ -5,7 +5,7 @@ Our final project is a fullstack **Task Management Application** that allows our
 
 A task has a title, a description, a due date, and 2 flags to indicate if the task is important and/or already completed. The user can mark the tasks as completed and/or important, and the user can filter the tasks with those tags.
 
-The application is both mobile and desktop friendly with responsive UI design. It is built using the MERN tech stack and deployed on Vercel. Using React Bootstrap allowed us to combine the power of React while enjoying the convenience of Bootstrap components and built-in variables rewritten in React.
+The application is both mobile and desktop friendly with responsive UI design. It is built using the MERN tech stack and deployed on Render. Using React Bootstrap allowed us to combine the power of React while enjoying the convenience of Bootstrap components and built-in variables rewritten in React.
 
 We did not use a state management tool like Zustand or Redux because it's still a relatively simple application.
 
@@ -53,15 +53,15 @@ nodemon server.js
 - Frontend: Vite, React, React Bootstrap
 - Backend: NodeJS, ExpressJS
 - Database: MongoDB (Mongoose as Object Data Mapper)
-- Deployment: Vercel
+- Deployment: Render
 
 ## Site Preview
-The site is deployed on Vercel. Here's a link for you to test out.
+The site is deployed on Render. Here's a link for you to test out.
 
 ## Team Members
 - Sihan Ma (@Masihan317)
 
-  Handled Vite setup and Built the main UI (responsive) with React Bootstrap. Developed the Express Server, Implemented REST API endpoints and Integrated MongoDB. Implemented add task, list all tasks, and delete tasks functionality. Wrote Documentation. Updated favicon. Handled loading state of main page. Deployed Application. Deployed App on Vercel.
+  Handled Vite setup and Built the main UI (responsive) with React Bootstrap. Developed the Express Server, Implemented REST API endpoints and Integrated MongoDB. Implemented add task, list all tasks, and delete tasks functionality. Wrote Documentation. Updated favicon. Handled loading state of main page. Deployed Application. Deployed App on Render.
 
 - Yuexuan Lu (@noiorhyun)
 

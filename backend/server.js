@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./db/connectDB.js";
 import Task from "./models/taskModel.js";
+import path from "path";
 
 // load env variables from .env file
 dotenv.config();
@@ -11,6 +12,8 @@ connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+const __dirname = path.resolve() // absolute path current directory
 
 app.use(express.json()); // middleware to parse JSON
 app.use(express.urlencoded({ extended: true })); // middleware to parse URL-encoded data (form submissions, etc.)
@@ -77,6 +80,13 @@ router.delete("/delete/:id", async (req, res) => {
 });
 
 app.use("/api/tasks", router); // use the router for all routes under /api/tasks
+
+app.use(express.static(path.join(__dirname, "/frontend/dist"))) // serve static files
+
+// serve frontend from backend
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"))
+})
 
 // start the server
 app.listen(PORT, () => {
