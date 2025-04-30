@@ -11,22 +11,31 @@ import updateTask from "../utils/updateTask";
 // the basic component for a Task object, presented as a card
 // receive props that are task fields and onDelete function that gets triggered when deleting tasks
 const Task = ({ id, title, content, date, completed, important, onDelete }) => {
-  const formattedDate = new Date(date).toLocaleDateString(); // only keep date from MongoDB time
+  // Format the date to display only the date part (removing time)
+  const formattedDate = new Date(date).toLocaleDateString();
+  
+  // Create a ref to track content overflow
   const contentRef = useRef(null);
   const [isContentTruncated, setIsContentTruncated] = useState(false);
 
+  // Modal state controls for different operations
   const [deleteShow, setDeleteShow] = useState(false); // delete confirmation Modal controls
-  const [editShow, setEditShow] = useState(false);
-  const [viewShow, setViewShow] = useState(false); // view details Modal controls
+  const [editShow, setEditShow] = useState(false);  // edit Modal controls
+  const [viewShow, setViewShow] = useState(false);     // Controls view details modal
+
+  // Form state for editing task details
   const [editForm, setEditForm] = useState({
     title,
     content,
-    date: date.split("T")[0],
+    date: date.split("T")[0], // Format date for date input
     important,
     completed,
   });
 
-  // Check if content is truncated
+  /**
+   * Effect hook to check if content is truncated
+   * determine if we need to show the "View details" indicator
+   */
   useEffect(() => {
     if (contentRef.current) {
       const element = contentRef.current;
@@ -39,7 +48,7 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
 
   const handleDeleteClose = () => setDeleteShow(false); // close delete confirmation Modal controls
   const handleDeleteShow = () => setDeleteShow(true); // open delete confirmation Modal controls
-  const handleEditClose = () => setEditShow(false);
+  const handleEditClose = () => setEditShow(false); 
   const handleEditShow = () => setEditShow(true);
   const handleViewClose = () => setViewShow(false);
   const handleViewShow = () => setViewShow(true);
@@ -51,11 +60,14 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
     onDelete(); // trigger refresh of tasks
   };
 
+  // toggle the completion status of a task
   const handleToggleComplete = async () => {
-    await updateTask(id, { completed: !completed });
-    onDelete();
+    await updateTask(id, { completed: !completed }); // Call the updateTask function with the new completion status
+    onDelete(); // Trigger, callback to refresh the task list
   };
 
+
+   // form input changes during editing, update with new information
   const handleEditChange = (e) => {
     const { name, value, type, checked } = e.target;
     setEditForm((prev) => ({
@@ -64,6 +76,8 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
     }));
   };
 
+
+  // submit task editing, update the new taks content
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     await updateTask(id, editForm);
@@ -106,6 +120,7 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
             >
               {content}
             </Card.Text>
+            {/* Show "View details" indicator if content is truncated */}
             {isContentTruncated && (
               <div 
                 className="text-muted d-inline"
@@ -116,6 +131,7 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
             )}
           </div>
 
+          {/* Task Footer Section */}
           <div className="mt-auto">
             {/* Task Deadline */}
             <Card.Text className="text-muted mb-2">{formattedDate}</Card.Text>
@@ -123,12 +139,12 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
               {/* Task Complete/Incomplete Toggle Button */}
               <Button 
                 variant={completed ? "success" : "danger"}
-                onClick={(e) => handleButtonClick(e, handleToggleComplete)}
+                onClick={(e) => handleButtonClick(e, handleToggleComplete)} // Prevent card click, toggle completion.
               >
-                {completed ? "Completed" : "Incomplete"}
+                {completed ? "Completed" : "Incomplete"} 
               </Button>
+              {/* Action Buttons (Edit and Delete) */}
               <div className="d-flex gap-2">
-                {/* Task Edit Button */}
                 <FaEdit 
                   role="button" 
                   size={24} 
@@ -165,7 +181,7 @@ const Task = ({ id, title, content, date, completed, important, onDelete }) => {
         </Modal.Footer>
       </Modal>
 
-      {/* Edit Modal */}
+      {/* Edit Task Modal */}
       <Modal show={editShow} onHide={handleEditClose}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Task</Modal.Title>
