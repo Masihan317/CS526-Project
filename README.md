@@ -61,8 +61,8 @@ The site is deployed on Vercel. Here's a link for you to test out.
 ## Team Members
 - Sihan Ma (@Masihan317)
 
-  Handled Vite setup and Built the main UI (responsive) with React Bootstrap. Developed the Express Server, Implemented REST API endpoints and Integrated MongoDB. Implemented add task, list all tasks, and delete tasks functionality. Wrote Documentation. Updated favicon. Handled loading state of main page.
+  Handled Vite setup and Built the main UI (responsive) with React Bootstrap. Developed the Express Server, Implemented REST API endpoints and Integrated MongoDB. Implemented add task, list all tasks, and delete tasks functionality. Wrote Documentation. Updated favicon. Handled loading state of main page. Deployed Application. Deployed App on Vercel.
 
 - Yuexuan Lu (@noiorhyun)
 
-  Implemented edit tasks, task filtering on home page, and click button to switch task between completed and incomplete functionality.
+  Implemented edit tasks, task filtering on home page, and click button to switch task between completed and incomplete functionality. Implemented View Detail Card. Handled Overflow of Tasks.
