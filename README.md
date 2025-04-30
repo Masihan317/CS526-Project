@@ -57,6 +57,7 @@ nodemon server.js
 
 ## Site Preview
 The site is deployed on Render. Here's a link for you to test out.
+https://cs526-project.onrender.com/
 
 ## Team Members
 - Sihan Ma (@Masihan317)
