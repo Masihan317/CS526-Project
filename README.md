@@ -63,7 +63,7 @@ https://cs526-project.onrender.com/
 ## Team Members
 - Sihan Ma (@Masihan317)
 
-  Handled Vite setup and Built the main UI (responsive) with React Bootstrap. Developed the Express Server, Implemented REST API endpoints and Integrated MongoDB. Implemented add task, list all tasks, and delete tasks functionality. Wrote Documentation. Updated favicon. Handled loading state of main page. Deployed Application. Deployed App on Render.
+  Handled Vite setup and Built the main UI (responsive) with React Bootstrap. Developed the Express Server, Implemented REST API endpoints and Integrated MongoDB. Implemented add task, list all tasks, and delete tasks functionality. Wrote Documentation (README.md and APIDOC.md). Updated favicon. Handled loading state of main page. Deployed Application on Render.
 
 - Yuexuan Lu (@noiorhyun)
 
