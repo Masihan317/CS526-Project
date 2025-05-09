@@ -86,7 +86,6 @@ Again I wrote a custom script `npm run start` that does `node backend/server.js`
 - **Update A Task**: Users can click the edit icon on the bottom of a task. A modal will appear directing the users to edit the details of the current task and update.
 - **Delete A Task**: Users can delete a task by clicking the delete icon on the bottom of the task. A modal will ask the user to confirm this action.
 - **View A Task**: The user can click on a task to see its details. When the task gets too long, There will be some ... and a view details part where clicking on it allows us to expand to see the full details to prevent overflow.
-- **Edit A Task**: The user can click on the edit icon on the bottom of the task to edit the task details.
 - **Filter Tasks by Category**: Users can filter the tasks that appear on the home page with a list of filters on the sidebar on the left.
 - **Toggle Task Completeness**: Users can click on the `Complete/Incomplete` button on the page to toggle the completeness state of the task. (A complete task will be marked incomplete, and vice versa).
 - **Responsive View**: The application is responsive and will adjust the UI for a better user experience on mobile and smaller screens. The number of cards shown and the position of the sidebar moves accordingly.
