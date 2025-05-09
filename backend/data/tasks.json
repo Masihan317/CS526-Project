@@ -1,0 +1,91 @@
+[{
+  "_id": {
+    "$oid": "680296651761547e5d766672"
+  },
+  "title": "Clean the Kitchen",
+  "content": "Wipe counters, wash dishes, empty trash, and mop the floor. Should take ~30 minutes.",
+  "date": {
+    "$date": "2025-05-10T00:00:00.000Z"
+  },
+  "important": false,
+  "completed": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680297fb1761547e5d76667a"
+  },
+  "title": "Buy Groceries",
+  "content": "Milk, Eggs, Bread, Coffee",
+  "date": {
+    "$date": "2025-04-13T00:00:00.000Z"
+  },
+  "important": false,
+  "completed": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6802982a1761547e5d76667e"
+  },
+  "title": "Finish Project Report",
+  "content": "Finalize the last section and prepare slides",
+  "date": {
+    "$date": "2025-04-15T00:00:00.000Z"
+  },
+  "important": false,
+  "completed": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68035c78767ec264df893a9c"
+  },
+  "title": "Book Appointment",
+  "content": "Schedule a cleaning for next week",
+  "date": {
+    "$date": "2025-05-08T00:00:00.000Z"
+  },
+  "important": false,
+  "completed": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68035d0c767ec264df893aa3"
+  },
+  "title": "Call Mom",
+  "content": "Check in and catch up this weekend",
+  "date": {
+    "$date": "2025-05-28T00:00:00.000Z"
+  },
+  "important": true,
+  "completed": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68053e0bf4c440bce4beeaed"
+  },
+  "title": "Do Laundry",
+  "content": "Wash and fold whites and colors. Don’t forget to check pockets first!",
+  "date": {
+    "$date": "2025-05-07T00:00:00.000Z"
+  },
+  "important": false,
+  "completed": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680a57e7eefe8ab64ce876a9"
+  },
+  "title": "Review Pull Request",
+  "content": "Check code quality, functionality, and consistency with style guidelines. Leave comments before the end of the day. Check code quality, functionality, and consistency with style guidelines. Leave comments before the end of the day. Check code quality, functionality, and consistency with style guidelines. Leave comments before the end of the day. Check code quality, functionality, and consistency with style guidelines. Leave comments before the end of the day. Check code quality, functionality, and consistency with style guidelines.",
+  "date": {
+    "$date": "2025-04-24T00:00:00.000Z"
+  },
+  "important": true,
+  "completed": false,
+  "__v": 0
+}]

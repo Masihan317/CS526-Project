@@ -9,8 +9,18 @@ The application is both mobile and desktop friendly with responsive UI design. I
 
 We did not use a state management tool like Zustand or Redux because it's still a relatively simple application.
 
+## Tech Stack
+- Frontend: Vite, React, React Bootstrap
+- Backend: NodeJS, ExpressJS
+- Database: MongoDB (Mongoose as Object Data Mapper)
+- Deployment: Render
+
+## Site Preview
+The site is deployed on Render. Here's a link for you to test out.
+https://cs526-project.onrender.com/
+
 ## Getting Started
-This section is for local setup. If you would like to see a hosted version, please check the Site Preview Section later in this documentation.
+This section is for local setup. If you would like to see a hosted version, please check the Site Preview Section earlier in this documentation.
 
 1. Clone the Repository
 
@@ -19,9 +29,13 @@ git clone https://github.com/Masihan317/CS526-Project.git
 cd CS526-Project
 ```
 
+From here, you actually have 2 options to run the application locally. We provide an option to to run the frontend and backend separately, and an option to build the frontend (with the super powerful and beautiful ability of Vite) and then run the application as a whole in the root directory. That is why we have package.json files in both the root and the frontend/backend directory.
+
+### Option A (Separate Frontend && Backend)
+
 2. Frontend Setup
 
-The Vite config file sets the default frontend port to 5000 but this number can be changed to fit your needs.
+Move into the `/frontend` directory and install the node modules. You can then run the frontend. The Vite config file sets the default frontend port to 5000 but this number can be changed to fit your needs. 
 ```
 cd frontend
 npm install
@@ -30,14 +44,41 @@ npm run dev
 
 3. Backend Setup
 
-You will need a MONGO_URI variable in your .env file that connects to MongoDB. You can optionally have a PORT variable. The default backend port is 3000, but you can change this number. (Note that if you do change this number, please also update the Vite config in the frontend folder.)
+You will need a MONGO_URI variable in your .env file that connects to MongoDB. You can optionally have a PORT variable. The default backend port is 3000, but you can change this number. (Note that if you do change this number, please also update the Vite config in the frontend folder so the requests are redirected correctly.)
 
-In a separate terminal as the front end one, run
+In a separate terminal as the frontend one, run
 ```
 cd backend
 npm install
 nodemon server.js
 ```
+
+This will start the backend server.
+
+
+4. Now you should be able to use the application!
+
+### Option B (Integrated Fullstack from Root Directory)
+
+2. You will need to build the frontend first using Vite.
+
+```
+npm run build
+```
+
+I have written a custom script that does just that. This is the full command run when we say `npm run build` in the root directory: `npm install && npm install --prefix frontend && npm run build --prefix frontend`
+
+After building the frontend, you should see a `/dist` folder in your `/frontend` directory.
+
+3. Now you are ready to start the backend.
+
+```
+npm run start
+```
+
+Again I wrote a custom script `npm run start` that does `node backend/server.js`. The default port will be 3000 but feel free to update the `PORT` variable in the `.env` file as you see fit.
+
+4. Now you should be able to use the application!
 
 ## Features
 - **Add New Tasks**: Users can add a task by clicking the add icon on the top right of the screen. A modal will appear directing the users to enter details of a new task (title, description, deadline, check task important, and check task completed).
@@ -50,15 +91,16 @@ nodemon server.js
 - **Responsive View**: The application is responsive and will adjust the UI for a better user experience on mobile and smaller screens. The number of cards shown and the position of the sidebar moves accordingly.
 - **Loading State**: The main page displays a spinner when the page is loading for a better user experience.
 
-## Tech Stack
-- Frontend: Vite, React, React Bootstrap
-- Backend: NodeJS, ExpressJS
-- Database: MongoDB (Mongoose as Object Data Mapper)
-- Deployment: Render
+## Screenshots
+Please check the `/screenshots` folder for sample images.
 
-## Site Preview
-The site is deployed on Render. Here's a link for you to test out.
-https://cs526-project.onrender.com/
+## Database Scripts
+We don't really have a MongoDB dump file per say, we just defined a task Schema which corresponds to a `tasks` collection in MongoDB using Mongoose. The Schema basically included the different fields of a task including a title, a description, a date, whether or not the task is important or completed. This `tasks` collection represents the list of tasks on our website.
+
+We added the tasks using our frontend UI and started with 0 tasks in the database. Just in case you would like to see the list of tasks in our current system, we do have an exported json file that can be found in `/backend/data/tasks.json`. If you want to see the task schema it's in `backend/models/taskModel.js`.
+
+## API Documentation
+Please refer to the APIDOC.md file in the root directory for a detailed explanation of each of the endpoints including request format, type, return data type, description, example request, example response, and error handling.
 
 ## Team Members
 - Sihan Ma (@Masihan317)
