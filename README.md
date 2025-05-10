@@ -9,6 +9,15 @@ The application is both mobile and desktop friendly with responsive UI design. I
 
 We did not use a state management tool like Zustand or Redux because it's still a relatively simple application.
 
+## Final Presentation Video
+Please check the `/video` directory for our recorded final presentation.
+
+## Final Report
+Please check the `/report` directory for our final project report.
+
+## Final Presentation Slides
+Please check the `/ppt` directory for our final project presentation slides.
+
 ## Tech Stack
 - Frontend: Vite, React, React Bootstrap
 - Backend: NodeJS, ExpressJS
